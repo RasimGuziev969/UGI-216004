@@ -86,7 +86,7 @@ namespace PhotoEnhancer
                         
                         var newR = (int)(pixelColor.R * k);
                         if(newR > 255)
-                            newR = 255;
+                            newR = 255; 
 
                         var newG = (int)(pixelColor.G * k);
                         if (newG > 255)
