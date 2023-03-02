@@ -29,6 +29,15 @@ namespace PhotoEnhancer
             set => b = CheckValue(value);
         }
 
+        public Pixel(double red, double green, double blue)
+        {
+            R = red;
+            G = green;
+            B = blue;
+        }
+
+        public Pixel() : this(0, 0, 0) { }
+
         private double CheckValue(double val)
         {
             if (val < 0 || val > 1)

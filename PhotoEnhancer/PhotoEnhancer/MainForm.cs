@@ -12,8 +12,8 @@ namespace PhotoEnhancer
 {
     public partial class MainForm : Form
     {
-        Bitmap originalBmp;
-        Bitmap resultBmp;
+        Photo originalPhoto;
+        Photo resultPhoto;
          
         Panel parametersPanel;
 
@@ -21,8 +21,9 @@ namespace PhotoEnhancer
         {
             InitializeComponent();
 
-            originalBmp = (Bitmap)Image.FromFile("cat.jpg");
-            orginalPictureBox.Image = originalBmp;
+            var bmp = (Bitmap)Image.FromFile("cat.jpg");
+            orginalPictureBox.Image = bmp;
+            originalPhoto = Convertors.BitmapToPhoto(bmp);
 
             filtersComboBox.Items.Add("Осветление/затемнение");
         }
@@ -73,35 +74,39 @@ namespace PhotoEnhancer
 
         private void applyButton_Click(object sender, EventArgs e)
         {
-            var newBmp = new Bitmap(originalBmp.Width, originalBmp.Height);
+            var newPhoto = new Photo(originalPhoto.Width, originalPhoto.Height);
 
             if (filtersComboBox.SelectedItem.ToString() == "Осветление/затемнение")
             {
                 var k = (double)((NumericUpDown)parametersPanel.Controls["coefficient"]).Value;
                 
-                for(var x = 0; x < originalBmp.Width; x++)
-                    for(var y = 0; y < originalBmp.Height; y++)
+                for(var x = 0; x < originalPhoto.Width; x++)
+                    for(var y = 0; y < originalPhoto.Height; y++)
                     {
-                        var pixelColor = originalBmp.GetPixel(x, y);
+                        var pixelColor = originalPhoto[x, y];
                         
-                        var newR = (int)(pixelColor.R * k);
-                        if(newR > 255)
-                            newR = 255; 
+                        var newR = pixelColor.R * k;
+                        if(newR > 1)
+                            newR = 1; 
 
-                        var newG = (int)(pixelColor.G * k);
-                        if (newG > 255)
-                            newG = 255;
+                        var newG = pixelColor.G * k;
+                        if (newG > 1)
+                            newG = 1;
 
-                        var newB = (int)(pixelColor.B * k);
-                        if (newB > 255)
-                            newB = 255;
+                        var newB = pixelColor.B * k;
+                        if (newB > 1)
+                            newB = 1;
 
-                        newBmp.SetPixel(x, y, Color.FromArgb(newR, newG, newB));
+                        newPhoto[x, y].R = newR;
+                        newPhoto[x, y].G = newG;
+                        newPhoto[x, y].B = newB;
+
+                        //newPhoto.SetPixel(x, y, Color.FromArgb(newR, newG, newB));
                     }
             }
 
-            resultBmp = newBmp;
-            resultPictureBox.Image = resultBmp;
+            resultPhoto = newPhoto;
+            resultPictureBox.Image = Convertors.PhotoToBitmap(resultPhoto);
         }
     }
 }
