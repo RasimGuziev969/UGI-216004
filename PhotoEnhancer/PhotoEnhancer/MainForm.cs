@@ -60,7 +60,8 @@ namespace PhotoEnhancer
                 label.Left = 0;
                 label.Top = i * (label.Height + 10);
                 label.Text = parametersInfo[i].Name;
-                
+                label.Font = new Font(label.Font.FontFamily, 10);
+
                 parametersPanel.Controls.Add(label);
 
                 var inputBox = new NumericUpDown();
@@ -74,10 +75,9 @@ namespace PhotoEnhancer
                 inputBox.Increment = (decimal)parametersInfo[i].Increment;
                 inputBox.DecimalPlaces = 2;
                 inputBox.Value = (decimal)parametersInfo[i].DefaultValue;
-                inputBox.Font = new Font(inputBox.Font.FontFamily, 10);
+
                 parametersPanel.Controls.Add(inputBox);
             }
-
 
             //if (filtersComboBox.SelectedItem.ToString() == "Осветление/затемнение")
             //{
