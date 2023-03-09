@@ -41,7 +41,6 @@ namespace PhotoEnhancer
             parametersPanel.Top = filtersComboBox.Bottom + 10;
             parametersPanel.Width = filtersComboBox.Width;
             parametersPanel.Height = applyButton.Top - filtersComboBox.Bottom - 20;
-            //parametersPanel.BackColor = Color.Gray;
 
             this.Controls.Add(parametersPanel);
 
@@ -82,27 +81,7 @@ namespace PhotoEnhancer
                 
                 for(var x = 0; x < originalPhoto.Width; x++)
                     for(var y = 0; y < originalPhoto.Height; y++)
-                    {
-                        var pixelColor = originalPhoto[x, y];
-                        
-                        var newR = pixelColor.R * k;
-                        if(newR > 1)
-                            newR = 1; 
-
-                        var newG = pixelColor.G * k;
-                        if (newG > 1)
-                            newG = 1;
-
-                        var newB = pixelColor.B * k;
-                        if (newB > 1)
-                            newB = 1;
-
-                        newPhoto[x, y].R = newR;
-                        newPhoto[x, y].G = newG;
-                        newPhoto[x, y].B = newB;
-
-                        //newPhoto.SetPixel(x, y, Color.FromArgb(newR, newG, newB));
-                    }
+                        newPhoto[x, y] = k * originalPhoto[x, y];
             }
 
             resultPhoto = newPhoto;

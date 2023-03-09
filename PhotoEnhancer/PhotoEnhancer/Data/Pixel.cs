@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PhotoEnhancer
 {
-    public class Pixel
+    public struct Pixel
     {
         private double r;
         public double R 
@@ -29,14 +29,23 @@ namespace PhotoEnhancer
             set => b = CheckValue(value);
         }
 
-        public Pixel(double red, double green, double blue)
+        public Pixel(double red, double green, double blue) : this()
         {
             R = red;
             G = green;
             B = blue;
         }
 
-        public Pixel() : this(0, 0, 0) { }
+        public static Pixel operator *(double k, Pixel p)
+        {
+            Pixel result = new Pixel();
+
+            result.r = Trim(k * p.r);
+            result.g = Trim(k * p.g);
+            result.b = Trim(k * p.b);
+
+            return result;
+        }
 
         private double CheckValue(double val)
         {
@@ -44,6 +53,14 @@ namespace PhotoEnhancer
                 throw new ArgumentException("Неверное значение яркости канала");
 
             return val;
+        }
+
+        private static double Trim(double lightness)
+        {
+            if(lightness > 1)
+                return 1;
+
+            return lightness;
         }
     }
 }

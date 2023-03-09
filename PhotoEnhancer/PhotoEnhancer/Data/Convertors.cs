@@ -17,9 +17,7 @@ namespace PhotoEnhancer
                 for(var y = 0; y < bmp.Height; y++)
                 {
                     var p = bmp.GetPixel(x, y);
-                    photo[x, y].R = p.R / 255.0;
-                    photo[x, y].G = p.G / 255.0;
-                    photo[x, y].B = p.B / 255.0;
+                    photo[x, y] = new Pixel(p.R / 255.0, p.G / 255.0, p.B / 255.0);
                 }
 
             return photo;
