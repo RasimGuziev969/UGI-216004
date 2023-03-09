@@ -47,6 +47,8 @@ namespace PhotoEnhancer
             return result;
         }
 
+        public static Pixel operator *(Pixel p, double k) => k * p;      
+
         private double CheckValue(double val)
         {
             if (val < 0 || val > 1)
