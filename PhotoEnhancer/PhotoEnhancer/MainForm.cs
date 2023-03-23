@@ -22,9 +22,9 @@ namespace PhotoEnhancer
         {
             InitializeComponent();
 
-            var bmp = (Bitmap)Image.FromFile("cat.jpg");
-            orginalPictureBox.Image = bmp;
-            originalPhoto = Convertors.BitmapToPhoto(bmp);
+            //var bmp = (Bitmap)Image.FromFile("cat.jpg");
+            //orginalPictureBox.Image = bmp;
+            //originalPhoto = Convertors.BitmapToPhoto(bmp);
         }
 
         private void filtersComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,6 +77,15 @@ namespace PhotoEnhancer
                 parametersPanel.Controls.Add(inputBox);
                 parameterControls.Add(inputBox);
             }
+
+            if(resultPhoto != null)
+            {
+                originalPhoto = resultPhoto;
+                orginalPictureBox.Image = resultPictureBox.Image;
+                resultPhoto = null;
+                resultPictureBox.Image = null;
+            }
+
         }
 
         private void applyButton_Click(object sender, EventArgs e)
@@ -92,6 +101,8 @@ namespace PhotoEnhancer
 
                 resultPhoto = filter.Process(originalPhoto, parameters);
                 resultPictureBox.Image = Convertors.PhotoToBitmap(resultPhoto);
+
+                saveToolStripMenuItem.Enabled = true;
             }
         }
 
@@ -99,6 +110,33 @@ namespace PhotoEnhancer
         {
             if(filter != null)
                 filtersComboBox.Items.Add(filter);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                filtersComboBox.Visible = true;
+                var bmp = (Bitmap)Image.FromFile(openFileDialog1.FileName);
+                orginalPictureBox.Image = bmp;
+                originalPhoto = Convertors.BitmapToPhoto(bmp);
+                resultPictureBox.Image = null;
+                resultPhoto = null;
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var bmp = Convertors.PhotoToBitmap(resultPhoto);
+                bmp.Save(saveFileDialog1.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+            }
         }
     }
 }
