@@ -54,6 +54,7 @@
     <Compile Include="Filters\IFilter.cs" />
     <Compile Include="Filters\IParameters.cs" />
     <Compile Include="Filters\LighteningFilter.cs" />
+    <Compile Include="Filters\LighteningParameters.cs" />
     <Compile Include="Filters\ParameterInfo.cs" />
     <Compile Include="Filters\ParametrizedFilter.cs" />
     <Compile Include="Filters\PixelFilter.cs" />
