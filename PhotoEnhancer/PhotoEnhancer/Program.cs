@@ -19,8 +19,17 @@ namespace PhotoEnhancer
 
             var mainForm = new MainForm();
 
-            mainForm.AddFilter(new LighteningFilter());
-            mainForm.AddFilter(new GrayScaleFilter());
+            mainForm.AddFilter(new PixelFilter<LighteningParameters>(
+                "Осветление/затемнение",
+                (pixel, parameters) => pixel * parameters.Coefficient));
+            
+            mainForm.AddFilter(new PixelFilter<EmptyParameters>(
+                "Оттенки серого",
+                (pixel, parameters) =>
+                {
+                    var lightness = 0.3 * pixel.R + 0.6 * pixel.G + 0.1 * pixel.B;
+                    return new Pixel(lightness, lightness, lightness);
+                }));
 
             Application.Run(mainForm);
         }
