@@ -38,6 +38,12 @@ namespace PhotoEnhancer
                 (point, size) => new Point(size.Width - point.X - 1, point.Y)
                 ));
 
+            mainForm.AddFilter(new TransformFilter(
+                "Поворот на 90° против ч. с.",
+                size => new Size(size.Height, size.Width),
+                (point, size) => new Point(size.Width - point.Y - 1, point.X)
+                ));
+
             Application.Run(mainForm);
         }
     }
