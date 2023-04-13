@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace PhotoEnhancer
@@ -30,6 +31,12 @@ namespace PhotoEnhancer
                     var lightness = 0.3 * pixel.R + 0.6 * pixel.G + 0.1 * pixel.B;
                     return new Pixel(lightness, lightness, lightness);
                 }));
+
+            mainForm.AddFilter(new TransformFilter(
+                "Отражение по горизонтали",
+                size => size,
+                (point, size) => new Point(size.Width - point.X - 1, point.Y)
+                ));
 
             Application.Run(mainForm);
         }

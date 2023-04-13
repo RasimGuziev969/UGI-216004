@@ -9,7 +9,6 @@ namespace PhotoEnhancer
     public class PixelFilter<TParameters> : ParametrizedFilter<TParameters>
         where TParameters : IParameters, new()
     {
-        string name;
         Func<Pixel, TParameters, Pixel> processor;
 
         public PixelFilter(string name, Func<Pixel, TParameters, Pixel> processor)
@@ -27,11 +26,6 @@ namespace PhotoEnhancer
                     newPhoto[x, y] = processor(original[x, y], parameters);
 
             return newPhoto;
-        }
-
-        public override string ToString()
-        {
-            return name;
         }
     }
 }

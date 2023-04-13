@@ -9,8 +9,6 @@ namespace PhotoEnhancer
 {
     public class TransformFilter : ParametrizedFilter<EmptyParameters>
     {
-        string name;
-
         // по размеру старой картинки определяет размер новой
         Func<Size, Size> sizeTransform;
 
@@ -41,11 +39,6 @@ namespace PhotoEnhancer
                 }
 
             return result;
-        }
-
-        public override string ToString()
-        {
-            return name;
         }
     }
 }
