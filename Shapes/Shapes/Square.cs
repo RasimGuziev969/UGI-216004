@@ -6,21 +6,22 @@ using System.Threading.Tasks;
 
 namespace Shapes
 {
-    public class Square : Rectangle
+    public class Square : Shape
     {
-        public override double Height 
+        public Point TopLeft { get; set; }
+        public double Side { get; set; }
+
+        public override double Area => Side * Side;
+                
+        public Square(double x, double y, double side)
         { 
-            get => base.Height;
-            set => base.Height = base.Width = value;
+            TopLeft = new Point(x, y);
+            Side = side;
         }
 
-        public override double Width 
-        { 
-            get => base.Width;
-            set => base.Height = base.Width = value;
+        public override void Draw()
+        {
+            throw new NotImplementedException();
         }
-        
-        public Square(double x, double y, double side): base(x, y, side, side) { }
-
     }
 }

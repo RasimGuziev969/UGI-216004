@@ -17,11 +17,11 @@ namespace Shapes.UnitTests
         }
 
         [Test]
-        public void SquareTest() 
+        public void SquareDimensionsTest() 
         {
             var square = new Square(0, 0, 5);
-            ChangeRectangleDimensions(square, 2, 3);
-            Assert.That(square.Width, Is.EqualTo(square.Height));
+            square.Side = 4;
+            Assert.That(square.Side, Is.EqualTo(4));
         }
 
         [Test]
@@ -34,8 +34,16 @@ namespace Shapes.UnitTests
         [Test]
         public void SquareAreaTest()
         {
-            var square = new Square(0,0, 1);
-            CheckArea(square);
+            var square = new Square(0,0, 5);
+            Assert.That(square.Area, Is.EqualTo(25));
+        }
+
+        [Test]
+        public void CircleAreaTest()
+        {
+            var circle = new Circle(4, 8, 2);
+
+            Assert.That(circle.Area, Is.EqualTo(12.566370614).Within(1e-8));
         }
 
         private void CheckArea(Rectangle rectangle)
