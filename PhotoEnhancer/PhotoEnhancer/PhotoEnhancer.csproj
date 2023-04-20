@@ -52,6 +52,7 @@
     <Compile Include="Filters\EmptyParameters.cs" />
     <Compile Include="Filters\IFilter.cs" />
     <Compile Include="Filters\IParameters.cs" />
+    <Compile Include="Filters\RotationParameters.cs" />
     <Compile Include="Filters\LighteningParameters.cs" />
     <Compile Include="Filters\ParameterInfo.cs" />
     <Compile Include="Filters\ParametrizedFilter.cs" />
