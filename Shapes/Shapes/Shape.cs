@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace Shapes
 {
-    public abstract class Shape
+    public abstract class Shape : IDrawable, IMeasureable
     {
         public abstract double Area { get; }
+
+        public abstract double Perimetr {get; }
+
         public abstract void Draw();
     }
 }

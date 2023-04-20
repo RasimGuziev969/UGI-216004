@@ -13,6 +13,8 @@ namespace Shapes
 
         public override double Area => Math.PI * Radius * Radius;
 
+        public override double Perimetr => 2 * Math.PI * Radius;
+
         public Circle(double x, double y, double r)
         {
             Center = new Point(x, y);

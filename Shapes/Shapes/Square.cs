@@ -12,7 +12,9 @@ namespace Shapes
         public double Side { get; set; }
 
         public override double Area => Side * Side;
-                
+
+        public override double Perimetr => 4 * Side;
+
         public Square(double x, double y, double side)
         { 
             TopLeft = new Point(x, y);

@@ -8,9 +8,9 @@ namespace Shapes
 {
     public static class Drawer
     {
-        public static void DrawShapes(List<Shape> shapes)
+        public static void DrawShapes(List<IDrawable> shapes)
         {
-            foreach (Shape shape in shapes)
+            foreach (IDrawable shape in shapes)
                 shape.Draw();
         }
     }

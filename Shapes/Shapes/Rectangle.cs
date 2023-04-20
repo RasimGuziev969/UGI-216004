@@ -12,7 +12,9 @@ namespace Shapes
         public double Width { get; set; }
         public double Height { get; set; }
 
-        public override double Area => Width * Height;  
+        public override double Area => Width * Height;
+
+        public override double Perimetr => 2 * (Width + Height);
 
         public Rectangle(double x, double y, double width, double height) 
         {

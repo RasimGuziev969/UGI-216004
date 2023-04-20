@@ -46,6 +46,16 @@ namespace Shapes.UnitTests
             Assert.That(circle.Area, Is.EqualTo(12.566370614).Within(1e-8));
         }
 
+        [Test]
+        public void GetOverallAreaTest()
+        {
+            List<Shape> shapes = new List<Shape>();
+            shapes.Add(new Rectangle(0, 0, 4, 3));
+            shapes.Add(new Square(1, 1, 5));
+
+            Assert.That(ShapeCalculator.GetOverAllArea(shapes), Is.EqualTo(37));
+        }
+
         private void CheckArea(Rectangle rectangle)
         {
             ChangeRectangleDimensions(rectangle, 4, 5);
