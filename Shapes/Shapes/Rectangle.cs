@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Geometry;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,24 +7,16 @@ using System.Threading.Tasks;
 
 namespace Shapes
 {
-    public class Rectangle : Shape
+    public class Rectangle : IDrawable
     {
-        public Point TopLeft { get; set; }
-        public double Width { get; set; }
-        public double Height { get; set; }
+        GRectangle rectangle;
 
-        public override double Area => Width * Height;
-
-        public override double Perimetr => 2 * (Width + Height);
-
-        public Rectangle(double x, double y, double width, double height) 
+        public Rectangle(GRectangle rectangle) 
         {
-            TopLeft = new Point(x, y);
-            Width = width;
-            Height = height;
-        }   
+            this.rectangle = rectangle;
+        }
 
-        public override void Draw()
+        public void Draw()
         {
             throw new NotImplementedException();
         }

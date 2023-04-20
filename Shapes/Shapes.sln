@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shapes", "Shapes\Shapes.csproj", "{65C4515A-78E2-440C-83DB-378591F0A4AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shapes.UnitTests", "Shapes.UnitTests\Shapes.UnitTests.csproj", "{147ED806-3DB8-4A3F-BDD8-6DB3FEF3EBCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shapes.UnitTests", "Shapes.UnitTests\Shapes.UnitTests.csproj", "{147ED806-3DB8-4A3F-BDD8-6DB3FEF3EBCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geometry", "Geometry\Geometry.csproj", "{AA5EAEC0-4876-4586-B021-5B26BD88D192}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{147ED806-3DB8-4A3F-BDD8-6DB3FEF3EBCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{147ED806-3DB8-4A3F-BDD8-6DB3FEF3EBCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{147ED806-3DB8-4A3F-BDD8-6DB3FEF3EBCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA5EAEC0-4876-4586-B021-5B26BD88D192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA5EAEC0-4876-4586-B021-5B26BD88D192}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA5EAEC0-4876-4586-B021-5B26BD88D192}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA5EAEC0-4876-4586-B021-5B26BD88D192}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

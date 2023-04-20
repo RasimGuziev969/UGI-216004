@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Geometry;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,22 +7,16 @@ using System.Threading.Tasks;
 
 namespace Shapes
 {
-    public class Square : Shape
+    public class Square : IDrawable
     {
-        public Point TopLeft { get; set; }
-        public double Side { get; set; }
+        GSquare square;
 
-        public override double Area => Side * Side;
-
-        public override double Perimetr => 4 * Side;
-
-        public Square(double x, double y, double side)
-        { 
-            TopLeft = new Point(x, y);
-            Side = side;
+        public Square(GSquare square)
+        {
+            this.square = square;
         }
 
-        public override void Draw()
+        public void Draw()
         {
             throw new NotImplementedException();
         }

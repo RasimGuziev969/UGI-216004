@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Geometry;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,22 +7,16 @@ using System.Threading.Tasks;
 
 namespace Shapes
 {
-    public class Circle : Shape
+    public class Circle : IDrawable
     {
-        public Point Center { get; set; }
-        public double Radius { get; set; }
+        GCircle circle;
 
-        public override double Area => Math.PI * Radius * Radius;
-
-        public override double Perimetr => 2 * Math.PI * Radius;
-
-        public Circle(double x, double y, double r)
+        public Circle(GCircle circle)
         {
-            Center = new Point(x, y);
-            Radius = r;
+            this.circle = circle;
         }
 
-        public override void Draw()
+        public void Draw()
         {
             throw new NotImplementedException();
         }

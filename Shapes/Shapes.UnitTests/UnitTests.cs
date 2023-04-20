@@ -1,4 +1,5 @@
 using System.Drawing;
+using Geometry;
 
 namespace Shapes.UnitTests
 {
@@ -8,7 +9,7 @@ namespace Shapes.UnitTests
         [Test]
         public void RectangleDimensionsTest()
         {
-            var rectangle = new Rectangle(0, 0, 4, 1);
+            var rectangle = new GRectangle(0, 0, 4, 1);
             
             ChangeRectangleDimensions(rectangle, 2, 3);
 
@@ -19,7 +20,7 @@ namespace Shapes.UnitTests
         [Test]
         public void SquareDimensionsTest() 
         {
-            var square = new Square(0, 0, 5);
+            var square = new GSquare(0, 0, 5);
             square.Side = 4;
             Assert.That(square.Side, Is.EqualTo(4));
         }
@@ -27,21 +28,21 @@ namespace Shapes.UnitTests
         [Test]
         public void RectangleAreaTest()
         {
-            var rectangle = new Rectangle(0, 0, 1, 2);
+            var rectangle = new GRectangle(0, 0, 1, 2);
             CheckArea(rectangle);
         }
 
         [Test]
-        public void SquareAreaTest()
+        public void GSquareAreaTest()
         {
-            var square = new Square(0,0, 5);
+            var square = new GSquare(0,0, 5);
             Assert.That(square.Area, Is.EqualTo(25));
         }
 
         [Test]
-        public void CircleAreaTest()
+        public void GCircleAreaTest()
         {
-            var circle = new Circle(4, 8, 2);
+            var circle = new GCircle(4, 8, 2);
 
             Assert.That(circle.Area, Is.EqualTo(12.566370614).Within(1e-8));
         }
@@ -49,20 +50,20 @@ namespace Shapes.UnitTests
         [Test]
         public void GetOverallAreaTest()
         {
-            List<Shape> shapes = new List<Shape>();
-            shapes.Add(new Rectangle(0, 0, 4, 3));
-            shapes.Add(new Square(1, 1, 5));
+            List<IMeasureable> shapes = new List<IMeasureable>();
+            shapes.Add(new GRectangle(0, 0, 4, 3));
+            shapes.Add(new GSquare(1, 1, 5));
 
             Assert.That(ShapeCalculator.GetOverAllArea(shapes), Is.EqualTo(37));
         }
 
-        private void CheckArea(Rectangle rectangle)
+        private void CheckArea(GRectangle rectangle)
         {
             ChangeRectangleDimensions(rectangle, 4, 5);
             Assert.That(rectangle.Area, Is.EqualTo(20));
         }
 
-        void ChangeRectangleDimensions(Rectangle r, double width, double heigh)
+        void ChangeRectangleDimensions(GRectangle r, double width, double heigh)
         {
             r.Width = width;
             r.Height = heigh;

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Shapes
 {
-    internal interface IDrawable
+    public interface IDrawable
     {
+        void Draw();
     }
 }
