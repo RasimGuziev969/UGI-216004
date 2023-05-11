@@ -114,6 +114,22 @@ namespace LinqMethods
                 .ThenBy (x => x.Name)
                 .Select(x => $"{x.Surname}, {x.Name}."));
 
+            var array = new[] { 2, 8, 17, 4, 7, 11 };
+
+            //Сумма
+            Console.WriteLine(array.Sum());
+
+            //Среднее арифметическое
+            Console.WriteLine(array.Average());
+
+            //Aggregate
+            //Сумма
+            Console.WriteLine(array.Aggregate((s,x) => s + x));
+            //Произведение
+            Console.WriteLine(array.Aggregate(1, (s,x) => s * x));
+            //Среднее геометрическое
+            Console.WriteLine(array.Aggregate(1, (s, x) => s * x, s => Math.Pow(s, 1.0 / array.Length)));
+
             Console.ReadKey();
         }
 
