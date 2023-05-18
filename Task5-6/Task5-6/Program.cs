@@ -24,22 +24,22 @@ namespace Task5_6
             var text = File.ReadAllLines(fileName);
 
             //Task 5
-            var words = text
-                .SelectMany(s => s.Split(new char[] {' ', '.', ',', ';', '!', '?', ':', '«', '»', '—', '–'},
-                    StringSplitOptions.RemoveEmptyEntries))
-                .Where(w => char.IsLetter(w[0]))
-                .Select(w => w.ToLower())                
-                .Distinct()
-                .OrderBy(w => w)
-                .ToList();
+            //var words = text
+            //    .SelectMany(s => s.Split(new char[] {' ', '.', ',', ';', '!', '?', ':', '«', '»', '—', '–'},
+            //        StringSplitOptions.RemoveEmptyEntries))
+            //    .Where(w => char.IsLetter(w[0]))
+            //    .Select(w => w.ToLower())                
+            //    .Distinct()
+            //    .OrderBy(w => w)
+            //    .ToList();
 
             //PrintWords(words);
 
             //Task 6
-            words = words
-                .OrderBy(w => w.Length)
-                .ThenBy(w => w)
-                .ToList();
+            //words = words
+            //    .OrderBy(w => w.Length)
+            //    .ThenBy(w => w)
+            //    .ToList();
 
             //Task 7 с упорядочением
             //Console.WriteLine();
@@ -49,14 +49,33 @@ namespace Task5_6
             //    .FirstOrDefault());
 
             //Task 7 без упорядочения
-            Console.WriteLine(words
-                .Select(w => (-w.Length, w))
-                .Min()
-                .Item2
-                );
+            //Console.WriteLine(words
+            //    .Select(w => (-w.Length, w))
+            //    .Min()
+            //    .Item2
+            //    );
 
 
             //PrintWords(words);
+
+            //Task 11
+            var words = text
+                .SelectMany(s => s.Split(new char[] { ' ', '.', ',', ';', '!', '?', ':', '«', '»', '—', '–' },
+                    StringSplitOptions.RemoveEmptyEntries))
+                .Where(w => char.IsLetter(w[0]));
+
+            var dict = GetFrequencyDictionary(words);
+
+            foreach (var entry in dict)
+                Console.WriteLine($"{entry.Key}: {entry.Value:F4}");
+
+            //Таблица частот в порядке убывания частот
+            Console.WriteLine();
+
+            foreach (var elem in dict
+                .OrderByDescending(x => x.Value)
+                .ThenBy(x => x.Key))
+                Console.WriteLine($"{elem.Key}: {elem.Value:F4}");
 
             Console.ReadKey();
         }
@@ -66,6 +85,19 @@ namespace Task5_6
             foreach( var word in words)
                 Console.WriteLine(word);
         }
+
+        static SortedDictionary<char, double> GetFrequencyDictionary(IEnumerable<string> words)
+        {
+            var n = (double)words.Count();
+
+            return new SortedDictionary<char, double>(
+                words
+                    .Select(w => w.ToUpper())
+                    .GroupBy(w => w[0])
+                    .ToDictionary(g => g.Key, g => g.Count() / n)
+                );
+        }
+
 
     }
 }

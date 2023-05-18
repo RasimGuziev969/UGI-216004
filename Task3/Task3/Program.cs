@@ -28,6 +28,9 @@ namespace Task3
             foreach(var student in allStudents)
                 Console.WriteLine(student); 
 
+            Console.WriteLine(GetAllStudentsNumber(groups));
+            Console.WriteLine(GetAverageGroupStudents(groups));
+
             Console.ReadKey();
         }
 
@@ -35,5 +38,14 @@ namespace Task3
             .SelectMany(group => group.Students)
             //.OrderBy(x => x)
             .ToList();
+
+        //Task 8
+        static int GetAllStudentsNumber(List<Group> groups) => groups
+            .SelectMany(group => group.Students)
+            .Count();
+
+        static double GetAverageGroupStudents(List<Group> groups) => groups
+            .Select(group => group.Students.Count)
+            .Average();
     }
 }
