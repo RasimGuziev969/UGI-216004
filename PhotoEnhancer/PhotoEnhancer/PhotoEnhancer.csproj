@@ -52,7 +52,9 @@
     <Compile Include="Filters\EmptyParameters.cs" />
     <Compile Include="Filters\IFilter.cs" />
     <Compile Include="Filters\Parameters\IParameters.cs" />
-    <Compile Include="Filters\Parameters\ParametersExtensions.cs" />
+    <Compile Include="Filters\Parameters\IParametersHandler.cs" />
+    <Compile Include="Filters\Parameters\SimpleParametersHandler.cs" />
+    <Compile Include="Filters\Parameters\StaticParametersHandler.cs" />
     <Compile Include="Filters\Transform\ITransformer.cs" />
     <Compile Include="Filters\Transform\RotateTransformer.cs" />
     <Compile Include="Filters\Transform\RotationParameters.cs" />

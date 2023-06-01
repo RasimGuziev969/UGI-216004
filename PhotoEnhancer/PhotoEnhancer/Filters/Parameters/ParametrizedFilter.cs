@@ -10,12 +10,14 @@ namespace PhotoEnhancer
         where TParameters : IParameters, new()
     {
         protected string name;
-        public ParameterInfo[] GetParametersInfo() => new TParameters().GetDecription();
+
+        IParametersHandler<TParameters> handler = new StaticParametersHandler<TParameters>();
+
+        public ParameterInfo[] GetParametersInfo() => handler.GetDescriptions();
 
         public Photo Process(Photo original, double[] values)
         {
-            var parameters = new TParameters();
-            parameters.SetValues(values);
+            var parameters = handler.CreateParameters(values);
             return Process(original, parameters);
         }
 

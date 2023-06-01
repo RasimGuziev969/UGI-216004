@@ -12,24 +12,27 @@ namespace Profiler
     {
         static void Main(string[] args)
         {
-            TestLighteningParameters((v, p) => p.SetValues(v), 500000);
-            TestLighteningParameters((v, p) => p.Coefficient = v[0], 500000);
+            var simpleHandler = new SimpleParametersHandler <LighteningParameters>();
+            var staticHandler = new StaticParametersHandler<LighteningParameters>();
+
+            TestLighteningParameters(v => simpleHandler.CreateParameters(v), 500000);
+            TestLighteningParameters(v => staticHandler.CreateParameters(v), 500000);
+            TestLighteningParameters(v => new LighteningParameters() { Coefficient = v[0] }, 500000);
 
             Console.ReadKey();
         }
 
-        static void TestLighteningParameters(Action<double[], LighteningParameters> action, int n)
+        static void TestLighteningParameters(Func<double[], LighteningParameters> method, int n)
         {
             var values = new double[] { 1 };
-            var pareters = new LighteningParameters();
 
-            action(values, pareters);
+            method(values);
 
             var watch = new Stopwatch();
             watch.Start();
 
             for(var i = 0; i < n; i++)
-                action(values, pareters);
+                method(values);
 
             watch.Stop();
 
