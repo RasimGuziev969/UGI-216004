@@ -101,7 +101,7 @@ namespace TypeReflection
                 .GetConstructors()
                 .Select(x => x.Name));
 
-            Console.WriteLine("===== Атрибуты =====");
+            Console.WriteLine("===== Аттрибуты =====");
             PrintNames(type
                 .GetCustomAttributes()
                 .Select(x => x.GetType().Name));
@@ -109,16 +109,22 @@ namespace TypeReflection
             var descriptions = type.GetCustomAttributes<DescriptionAttribute>();
             if(descriptions.Count() > 0)
             {
-                Console.WriteLine("===== Атрибуты Description =====");
+                Console.WriteLine("===== Аттрибуты Description =====");
                 PrintNames(descriptions.Select(x => x.Text));
             }
 
-            Console.WriteLine("===== Атрибуты Description полей ====");
-            PrintNames(type
-                .GetFields()
-                .Select(x => x.GetCustomAttribute<DescriptionAttribute>())
-                .Where(x => x != null)
-                .Select(x => x.Text));
+            Console.WriteLine("===== Аттрибуты Description полей ====");
+            var fields = type.GetFields();
+            foreach( var field in fields)
+            {
+                var descs = field
+                    .GetCustomAttributes<DescriptionAttribute>()
+                    .Cast<DescriptionAttribute>()
+                    .Select(a => a.Text);
+
+                foreach (var text in descs)
+                    Console.WriteLine($"-> {text}");
+            }
         }
 
         static void PrintNames(IEnumerable<string> names)

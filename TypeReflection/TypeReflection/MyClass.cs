@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TypeReflection
 {
     [Serializable]
-    [Description("Класс для примера рефлексии типов")]
+    [Description("Класс для примера рефлексии типов")]  
     public class MyClass : ICloneable
     {
         public static string Remark = "";
@@ -16,8 +16,10 @@ namespace TypeReflection
         public int PublicProperty { get; set; }
 
         [Description("Пример открытого поля")]
+        [Description("Дополнительное описание")]
         public int PublicField;
 
+        [NonSerialized]
         [Description("Ещё один пример открытого поля")]
         public int AnotherPublicField;
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TypeReflection
 {
+    [AttributeUsage(AttributeTargets.All,AllowMultiple = true)]
     public class DescriptionAttribute : Attribute
     {
         public string Text { get; set; }
