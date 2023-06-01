@@ -9,25 +9,11 @@ namespace PhotoEnhancer
 {
     public class RotationParameters : IParameters
     {
-        public double AngleInDegrees { get; set; }
-        public ParameterInfo[] GetDecription()
-        {
-            return new[]
-            {
-                new ParameterInfo()
-                {
-                    Name = "Угол в °",
+        [ParameterInfo(Name = "Угол в °",
                     MinValue = -360,
                     MaxValue = 360,
                     DefaultValue = 0,
-                    Increment = 5
-                }
-            };
-        }
-
-        public void SetValues(double[] values)
-        {
-            AngleInDegrees = values[0];
-        }
+                    Increment = 5)]
+        public double AngleInDegrees { get; set; }
     }
 }
